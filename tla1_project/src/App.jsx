@@ -122,7 +122,7 @@ function App() {
                   <button
                     type="submit"
                     id="btnAdd"
-                    className={`btn ${editIndex !== null ? "btn-success" : "btn-primary"} px-4 fw-semibold`}
+                   className={`btn ${editIndex !== null ? "btn-success" : "btn-secondary"} px-4 fw-semibold`}
                   >
                     {editIndex !== null ? "Update Category" : "Save Category"}
                   </button>
