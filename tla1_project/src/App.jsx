@@ -70,7 +70,7 @@ function App() {
         <div className="col-lg-9">
           {/* Registration Card */}
           <div className="card shadow-sm border-0 mb-4">
-            <div className="card-header bg-primary text-white py-3">
+            <div className="card-header bg-dark text-white py-3">
               <h1 className="h5 mb-0 fw-bold">
                 {editIndex !== null
                   ? "Edit Income Category"
