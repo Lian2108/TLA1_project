@@ -1,13 +1,13 @@
-import { useState } from 'react';
-import './App.css';
+import { useState } from "react";
+import "./App.css";
 
 function App() {
   // Declarative React State
   const [categories, setCategories] = useState([]);
-  const [catName, setCatName] = useState('');
-  const [catDesc, setCatDesc] = useState('');
-  const [error, setError] = useState('');
-  
+  const [catName, setCatName] = useState("");
+  const [catDesc, setCatDesc] = useState("");
+  const [error, setError] = useState("");
+
   // Edit State Tracking
   const [editIndex, setEditIndex] = useState(null);
 
@@ -17,26 +17,32 @@ function App() {
 
     // Guard Clause Validation
     if (!catName.trim() || !catDesc.trim()) {
-      setError('Please complete both input fields.');
+      setError("Please complete both input fields.");
       return;
     }
 
-    setError('');
+    setError("");
 
     if (editIndex !== null) {
       // Update existing category
       const updatedCategories = [...categories];
-      updatedCategories[editIndex] = { name: catName.trim(), desc: catDesc.trim() };
+      updatedCategories[editIndex] = {
+        name: catName.trim(),
+        desc: catDesc.trim(),
+      };
       setCategories(updatedCategories);
       setEditIndex(null);
     } else {
       // Add new category to state array
-      setCategories([...categories, { name: catName.trim(), desc: catDesc.trim() }]);
+      setCategories([
+        ...categories,
+        { name: catName.trim(), desc: catDesc.trim() },
+      ]);
     }
 
     // Reset Form Inputs
-    setCatName('');
-    setCatDesc('');
+    setCatName("");
+    setCatDesc("");
   };
 
   // Handle Delete Action
@@ -45,8 +51,8 @@ function App() {
     // If the user was currently editing this item, reset the form
     if (editIndex === indexToDelete) {
       setEditIndex(null);
-      setCatName('');
-      setCatDesc('');
+      setCatName("");
+      setCatDesc("");
     }
   };
 
@@ -55,23 +61,23 @@ function App() {
     setEditIndex(indexToEdit);
     setCatName(categories[indexToEdit].name);
     setCatDesc(categories[indexToEdit].desc);
-    setError('');
+    setError("");
   };
 
   return (
     <main className="container py-5">
       <div className="row justify-content-center">
         <div className="col-lg-9">
-          
           {/* Registration Card */}
           <div className="card shadow-sm border-0 mb-4">
             <div className="card-header bg-primary text-white py-3">
               <h1 className="h5 mb-0 fw-bold">
-                {editIndex !== null ? 'Edit Income Category' : 'Income Category Registration'}
+                {editIndex !== null
+                  ? "Edit Income Category"
+                  : "Income Category Registration"}
               </h1>
             </div>
             <div className="card-body p-4">
-              
               {/* Error Feedback Alert */}
               {error && (
                 <div className="alert alert-danger py-2" role="alert">
@@ -81,7 +87,10 @@ function App() {
 
               <form onSubmit={handleFormSubmit}>
                 <div className="mb-3">
-                  <label htmlFor="txtCatName" className="form-label fw-semibold">
+                  <label
+                    htmlFor="txtCatName"
+                    className="form-label fw-semibold"
+                  >
                     Category Name
                   </label>
                   <input
@@ -94,7 +103,10 @@ function App() {
                   />
                 </div>
                 <div className="mb-3">
-                  <label htmlFor="txtCatDesc" className="form-label fw-semibold">
+                  <label
+                    htmlFor="txtCatDesc"
+                    className="form-label fw-semibold"
+                  >
                     Description
                   </label>
                   <input
@@ -110,9 +122,9 @@ function App() {
                   <button
                     type="submit"
                     id="btnAdd"
-                    className={`btn ${editIndex !== null ? 'btn-success' : 'btn-primary'} px-4 fw-semibold`}
+                    className={`btn ${editIndex !== null ? "btn-success" : "btn-primary"} px-4 fw-semibold`}
                   >
-                    {editIndex !== null ? 'Update Category' : 'Save Category'}
+                    {editIndex !== null ? "Update Category" : "Save Category"}
                   </button>
                   {editIndex !== null && (
                     <button
@@ -120,9 +132,9 @@ function App() {
                       className="btn btn-secondary px-3 fw-semibold"
                       onClick={() => {
                         setEditIndex(null);
-                        setCatName('');
-                        setCatDesc('');
-                        setError('');
+                        setCatName("");
+                        setCatDesc("");
+                        setError("");
                       }}
                     >
                       Cancel
@@ -144,9 +156,19 @@ function App() {
               <table className="table table-hover align-middle mb-0">
                 <thead className="table-light">
                   <tr>
-                    <th scope="col" style={{ width: '30%' }}>Category Name</th>
-                    <th scope="col" style={{ width: '45%' }}>Description</th>
-                    <th scope="col" className="text-center" style={{ width: '25%' }}>Actions</th>
+                    <th scope="col" style={{ width: "30%" }}>
+                      Category Name
+                    </th>
+                    <th scope="col" style={{ width: "45%" }}>
+                      Description
+                    </th>
+                    <th
+                      scope="col"
+                      className="text-center"
+                      style={{ width: "25%" }}
+                    >
+                      Actions
+                    </th>
                   </tr>
                 </thead>
                 <tbody id="listIncomeCat">
@@ -182,7 +204,6 @@ function App() {
               </table>
             </div>
           </div>
-
         </div>
       </div>
     </main>
