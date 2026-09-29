@@ -1,16 +1,32 @@
-# React + Vite
+# Income Category Registration
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+This is a simple React application for managing income categories. Users can add, view, edit, and delete income categories through a registration form and table.
 
-Currently, two official plugins are available:
+## Features
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+* Add new income categories
+* View registered categories
+* Edit existing categories
+* Delete categories
+* Basic input validation
+* Dynamic table using React state
 
-## React Compiler
+## Technologies Used
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+* React
+* JavaScript
+* Bootstrap
+* CSS
 
-## Expanding the ESLint configuration
+## How to Use
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+1. Enter the **Category Name** and **Description**.
+2. Click **Save Category** to add the category.
+3. Click **Edit** to update an existing category.
+4. Click **Delete** to remove a category.
+5. Both input fields must be filled in before saving.
+
+## Author
+
+**Lian Dumangas**
+BSIT - 2nd Year
