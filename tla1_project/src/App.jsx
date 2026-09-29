@@ -11,7 +11,7 @@ function App() {
   // Edit State Tracking
   const [editIndex, setEditIndex] = useState(null);
 
-  // Handle Form Submission / Button Click (Supports both Add and Update)
+  // Handle Form Submission / Button Click
   const handleFormSubmit = (e) => {
     e.preventDefault();
 
@@ -26,17 +26,22 @@ function App() {
     if (editIndex !== null) {
       // Update existing category
       const updatedCategories = [...categories];
+
       updatedCategories[editIndex] = {
         name: catName.trim(),
         desc: catDesc.trim(),
       };
+
       setCategories(updatedCategories);
       setEditIndex(null);
     } else {
       // Add new category to state array
       setCategories([
         ...categories,
-        { name: catName.trim(), desc: catDesc.trim() },
+        {
+          name: catName.trim(),
+          desc: catDesc.trim(),
+        },
       ]);
     }
 
@@ -48,6 +53,7 @@ function App() {
   // Handle Delete Action
   const handleDelete = (indexToDelete) => {
     setCategories(categories.filter((_, index) => index !== indexToDelete));
+
     // If the user was currently editing this item, reset the form
     if (editIndex === indexToDelete) {
       setEditIndex(null);
@@ -56,7 +62,7 @@ function App() {
     }
   };
 
-  // Handle Edit Action (Loads data back into inputs)
+  // Handle Edit Action
   const handleEdit = (indexToEdit) => {
     setEditIndex(indexToEdit);
     setCatName(categories[indexToEdit].name);
@@ -70,6 +76,7 @@ function App() {
         <div className="col-lg-9">
           {/* Registration Card */}
           <div className="card shadow-sm border-0 mb-4">
+            {/* Dark Registration Header */}
             <div className="card-header bg-dark text-white py-3">
               <h1 className="h5 mb-0 fw-bold">
                 {editIndex !== null
@@ -77,6 +84,7 @@ function App() {
                   : "Income Category Registration"}
               </h1>
             </div>
+
             <div className="card-body p-4">
               {/* Error Feedback Alert */}
               {error && (
@@ -93,6 +101,7 @@ function App() {
                   >
                     Category Name
                   </label>
+
                   <input
                     type="text"
                     id="txtCatName"
@@ -102,6 +111,7 @@ function App() {
                     onChange={(e) => setCatName(e.target.value)}
                   />
                 </div>
+
                 <div className="mb-3">
                   <label
                     htmlFor="txtCatDesc"
@@ -109,6 +119,7 @@ function App() {
                   >
                     Description
                   </label>
+
                   <input
                     type="text"
                     id="txtCatDesc"
@@ -118,14 +129,20 @@ function App() {
                     onChange={(e) => setCatDesc(e.target.value)}
                   />
                 </div>
+
                 <div className="d-flex gap-2">
+                  {/* Save / Update Button */}
                   <button
                     type="submit"
                     id="btnAdd"
-                   className={`btn ${editIndex !== null ? "btn-success" : "btn-secondary"} px-4 fw-semibold`}
+                    className={`btn ${
+                      editIndex !== null ? "btn-success" : "btn-secondary"
+                    } px-4 fw-semibold`}
                   >
                     {editIndex !== null ? "Update Category" : "Save Category"}
                   </button>
+
+                  {/* Cancel Button */}
                   {editIndex !== null && (
                     <button
                       type="button"
@@ -152,6 +169,7 @@ function App() {
                 Registered Categories
               </h2>
             </div>
+
             <div className="table-responsive">
               <table className="table table-hover align-middle mb-0">
                 <thead className="table-light">
@@ -159,9 +177,11 @@ function App() {
                     <th scope="col" style={{ width: "30%" }}>
                       Category Name
                     </th>
+
                     <th scope="col" style={{ width: "45%" }}>
                       Description
                     </th>
+
                     <th
                       scope="col"
                       className="text-center"
@@ -171,6 +191,7 @@ function App() {
                     </th>
                   </tr>
                 </thead>
+
                 <tbody id="listIncomeCat">
                   {categories.length === 0 ? (
                     <tr>
@@ -182,14 +203,19 @@ function App() {
                     categories.map((item, index) => (
                       <tr key={index}>
                         <td className="fw-semibold text-dark">{item.name}</td>
+
                         <td className="text-secondary">{item.desc}</td>
+
                         <td className="text-center">
+                          {/* Edit Button - Dark */}
                           <button
-                            className="btn btn-sm btn-outline-primary me-2 px-3 fw-semibold"
+                            className="btn btn-sm btn-outline-dark me-2 px-3 fw-semibold"
                             onClick={() => handleEdit(index)}
                           >
                             Edit
                           </button>
+
+                          {/* Delete Button - Red */}
                           <button
                             className="btn btn-sm btn-outline-danger px-3 fw-semibold"
                             onClick={() => handleDelete(index)}
